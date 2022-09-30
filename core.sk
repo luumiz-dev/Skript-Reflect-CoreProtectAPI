@@ -1,0 +1,23 @@
+# /co l user: LuuMiz action: -block time:10m
+# boolean logRemoval(String user, Location location, Material type, BlockData blockData)
+# {CoreProtectAPI}.logChat({_player}, "is a godlike dev")
+
+import:
+    org.bukkit.Bukkit
+    net.coreprotect.CoreProtect
+    net.coreprotect.CoreProtectAPI
+
+on load:
+    getCoreProtect()
+
+function getCoreProtect():
+    set {_CP} to Bukkit.getPluginManager().getPlugin("CoreProtect")
+    set {CoreProtectAPI} to {_CP}.getAPI()
+    {CoreProtectAPI}.testAPI()
+
+on right click:
+    if line 1 of lore of player's held item contains "core":
+        {CoreProtectAPI}.logRemoval(name of player, location of player, event-block.getType(), event-block.getBlockData())
+        set event-block to air
+        
+        
